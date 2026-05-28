@@ -1,0 +1,6 @@
+{
+  "name": "Kyoto Sojourn Luxury Invitation",
+  "description": "An ultra-premium, interactive high-resolution invitation experience for Luke Coutinho's exclusive Kyoto Sojourn in Japan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

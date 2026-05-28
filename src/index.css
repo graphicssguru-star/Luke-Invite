@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Shippori Mincho", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-gold: "Cinzel", serif;
+  
+  --color-gold-light: #fef08a; /* yellow-200 */
+  --color-gold-dark: #854d0e; /* yellow-800 */
+}
+
+/* Base resets & styling */
+body {
+  background-color: #050505;
+  color: #e5e5e5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Gold Metallic Foil Effect */
+.gold-text {
+  background: linear-gradient(
+    135deg,
+    #937330 0%,
+    #bfa35d 20%,
+    #ecd89d 40%,
+    #fdf0cd 50%,
+    #ecd89d 60%,
+    #bfa35d 80%,
+    #937330 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 1px rgba(236, 216, 157, 0.15);
+  animation: shine 12s ease infinite;
+}
+
+/* Subtle gold border foil effect */
+.gold-border-gradient {
+  border-image: linear-gradient(
+    to bottom,
+    #937330 0%,
+    #ecd89d 40%,
+    #fdf0cd 50%,
+    #ecd89d 60%,
+    #937330 100%
+  ) 1;
+}
+
+/* Shimmer/Shine Animation for Gold Foil */
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Paper Texture overlay to replicate Japanese Washi paper */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Animated slow moving fog/mist */
+.mist-layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: mist-drift 60s linear infinite;
+}
+
+.mist-layer-reverse {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.005) 50%,
+    transparent 80%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+  transform: translate3d(-50%, 0, 0);
+  animation: mist-drift-reverse 45s linear infinite;
+}
+
+@keyframes mist-drift {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  50% {
+    transform: translate3d(0%, 5%, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes mist-drift-reverse {
+  0% {
+    transform: translate3d(0%, -5%, 0);
+  }
+  50% {
+    transform: translate3d(-40%, 5%, 0);
+  }
+  100% {
+    transform: translate3d(0%, -5%, 0);
+  }
+}
+
+/* Pulsating lantern/candle glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.1);
+    filter: blur(50px);
+  }
+}
+
+.lantern-glow-ambient {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+/* Custom scrollbar to keep it perfectly premium */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a059;
+}
+
+/* Print/export overrides to match vertical aspect ratios */
+@media print {
+  body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
